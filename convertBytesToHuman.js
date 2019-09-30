@@ -12,30 +12,6 @@
  * и класса (например, отрицательные числа)
  */
 
-
-
 export default function convertBytesToHuman(bytes) {
   // your solution goes here
-  let toKB = 1024, toMB = toKB * 1024, 
-    toGB =toMB * 1024, toTB = toGB * 1024, 
-    toPB = toTB * 1024;
-  if (!Number.isInteger(bytes) || bytes < 0) {
-    return false;
-  }
-  else if (bytes < toKB) {
-    return bytes + " B";
-  }
-  else if (bytes < toMB) {
-    return parseFloat((bytes / toKB).toFixed(2)) + " KB";
-  }
-  else if (bytes < toGB) {
-    return parseFloat((bytes / toMB).toFixed(2)) + " MB";
-  }
-  else if (bytes < toTB) {
-    return parseFloat((bytes / toGB).toFixed(2)) + " GB";
-  }
-  else if (bytes < toPB) {
-    return parseFloat((bytes / toTB).toFixed(2)) + " TB";
-  }
-  return parseFloat((bytes / toPB).toFixed(2)) + " PB";
 }
