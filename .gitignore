@@ -145,3 +145,4 @@ flow-typed/
 docs/_book/
 jest_*/
 .jscpd/
+pull_request_template.md
