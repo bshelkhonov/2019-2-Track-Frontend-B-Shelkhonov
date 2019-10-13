@@ -1,0 +1,120 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  color: #333;
+  font-size: 15pt;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  overflow-x: hidden;
+}
+
+.head-container {
+  background-color: #8E24AA;
+  height: 15vh;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: raw;
+  border: 1px solid #ccc;
+  border-bottom: 1px;
+}
+
+.page-header-img {
+  margin-left: 10%;
+  float: left;
+}
+
+.face-img {
+  max-width: 10wv;
+  max-height: 10vh;
+  border-radius: 50%;
+}
+
+.active {
+  margin-top: 4vh;
+  width: 20vw;
+  float: left;
+  margin-left: 6vw;
+  margin-right: 35vw;
+}
+
+.name {
+  width: 40vw;
+  font-size: 35pt;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.last-active {
+  width: 40vw;
+  font-size: 30pt;
+  margin-top: 2vh;
+  margin-left: 10px;
+  color: #fff;
+  line-height: 2vh; 
+}
+
+.options {
+  margin-left: 1vw;
+  width: 8vh;
+  height: 8vh;
+}
+
+.options-ico {
+  width: 8vh;
+  height: 8vh;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 85vh;
+  background-color: #fff;
+  color: #000;
+}
+
+#chat-log-container {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  border-top: 1px solid #000;
+  display: flex;
+}
+
+.message {
+  margin-left: 10vw;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  text-align: left;
+  word-wrap: break-word;
+  z-index: 0;
+  font-size: 30pt;
+  line-height: 2;
+}
+
+#form-input-container {
+  font-size: 30pt;
+}  
+
+
+
+
