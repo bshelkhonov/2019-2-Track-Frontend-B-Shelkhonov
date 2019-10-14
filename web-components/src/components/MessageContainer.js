@@ -51,7 +51,7 @@ class MessageContainer extends HTMLElement {
   addMessage(msgText, absoluteTime) {
     const newMessage = document.createElement('message-element');
     newMessage.value = msgText;
-    newMessage.strintTime = getStringTime(absoluteTime);
+    newMessage.stringTime = getStringTime(absoluteTime);
     newMessage.absoluteTime = absoluteTime;
     this.chatLogContainer.append(newMessage);
     this.chatLogContainer.scrollTo(0, this.chatLogContainer.scrollHeight);
