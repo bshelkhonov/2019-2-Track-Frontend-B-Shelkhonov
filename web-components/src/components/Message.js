@@ -20,6 +20,12 @@ template.innerHTML = `
     text-align: right;
   }
 
+  .read-status {
+    height: 5vh;
+    width: 5vh;
+    fill: white;
+  }
+
   </style>
   <div class='message-box'>
     <div class='message-text'></div>

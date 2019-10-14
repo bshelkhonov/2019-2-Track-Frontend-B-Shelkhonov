@@ -43,7 +43,7 @@ class MessageContainer extends HTMLElement {
 
     stringArray.split(splitter).forEach((element) => {
       const msg = element.split(separator);
-      this.addMessage(msg[1], msg[0]);
+      this.addMessage(msg[1], parseInt(msg[0], 10));
     });
   }
 
