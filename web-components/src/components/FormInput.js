@@ -2,26 +2,26 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>
         .input-container {
+          border-top: 1px solid #000;
           display: flex;
         }
 
         input {
           outline: none;
-          width: calc(100vw - 15vh);
-          height: 15vh;
-          font-size: 40pt;
+          width: calc(100vw - 10vh);
+          height: 10vh;
+          font-size: 3.5vh;
           background-color: #fff;
         }
 
         #attach-button {
-          background-color: #fff;
-          width: 15vh;
-          height: 15vh;
+          width: 10vh;
+          height: 10vh;
         }
 
         :host {
             display: inline-block;
-            border: 1px solid rgba(25, 25, 25, 0.32);
+            bordertop: 1px solid rgba(25, 25, 25, 0.32);
         }
     </style>
    <div class='input-container'>
@@ -34,8 +34,8 @@ template.innerHTML = `
 class FormInput extends HTMLElement {
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot = this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.$input = this.shadowRoot.querySelector('input');
   }

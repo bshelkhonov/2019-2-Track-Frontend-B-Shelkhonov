@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "./node_modules/.bin/eslint ./src/index.js",
+    "test": "./node_modules/.bin/eslint ./src/index.js ./src/components/FormInput.js ./src/components/Message.js ./src/components/MessageContainer.js ./src/components/MessageForm.js ./src/components/PageHeader.js", 
     "start": "webpack-dev-server --mode=development --hot",
     "build": "webpack --mode=development"
   },
