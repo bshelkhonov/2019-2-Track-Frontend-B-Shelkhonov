@@ -56,4 +56,5 @@ class FormInput extends HTMLElement {
     this.$input.value = '';
   }
 }
+
 customElements.define('form-input', FormInput);

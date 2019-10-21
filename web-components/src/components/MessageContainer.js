@@ -1,4 +1,4 @@
-// import { storageKey } from "./MessageForm";
+import { messagesStorageKey } from './Constants';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -7,6 +7,7 @@ template.innerHTML = `
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       max-height: 80vh;
     }
     
@@ -30,12 +31,22 @@ function getStringTime(absoluteTime) {
 class MessageContainer extends HTMLElement {
   constructor() {
     super();
-    this.shadowRoot = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.chatLogContainer = this.shadowRoot.getElementById('chat-log-container');
+    this.$mainContainer = document.getElementById('main-container');
   }
 
   connectedCallback() {
+   /* try {
+      this.$mainContainer.$appState.messages = JSON.parse(localStorage.getItem(messagesStorageKey));
+      this.$mainContainer.$appState.messages.forEach((item) => {
+        console.log(item);
+        this.addMessage(item.value, item.time);
+      });
+    } catch(err) {
+      console.log('localstorage error!');
+    }*/
     const stringArray = localStorage.getItem(storageKey);
     if (stringArray === null) {
       return;

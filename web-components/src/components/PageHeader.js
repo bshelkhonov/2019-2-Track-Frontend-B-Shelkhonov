@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
-      #head-container {
+      #head-container-msg {
         background-color: #8E24AA;
         height: 10vh;
         display: flex;
@@ -10,9 +10,13 @@ template.innerHTML = `
         border: 1px solid #ccc;
         border-bottom: 1px;
         margin-bottom: 1px;
-      }
+      }  
 
       #back-button {
+        border: 0;
+        display: flex;
+        align-items: center;
+        background-color: #8E24AA;
         margin-left: 2vw;
         width: 8vw;
         height: 8vh;
@@ -24,17 +28,17 @@ template.innerHTML = `
         fill: white;
       }
       
-      .profile-picture {
+      #profile-picture {
         margin-left: 3vh;
       }
       
-      .profile-picture-img {
-        max-width: 8vh;
+      #profile-picture-img {
+        width: 8vh;
         max-height: 8vh;
         border-radius: 4vh;
       }
       
-      .active {
+      #active {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -44,13 +48,13 @@ template.innerHTML = `
         margin-right: 2vw;
       }
       
-      .name {
+      #name {
         max-width: 80vw;
         font-size: 3vh;
         color: #fff;
       }
       
-      .last-active {
+      #last-active {
         max-width: 80vw;
         font-size: 2vh;
         margin-top: 0.1vh;
@@ -89,17 +93,50 @@ template.innerHTML = `
         fill: white;
       } 
 
+      #head-container-menu {
+        background-color: #8E24AA;
+        height: 10vh;
+        display: none;
+        align-items: center;
+        flex-direction: row;
+        border: 1px solid #ccc;
+        border-bottom: 1px;
+        margin-bottom: 1px;
+      }
+
+      #side-menu-button {
+        border: 0;
+        display: flex;
+        align-items: center;
+        background-color: #8E24AA;
+        margin-left: 2vw;
+        width: 8vw;
+        height: 8vh;
+      }
+
+      #side-menu-button-img {
+        width: 8vw;
+        height: 8vh;
+        fill: white;
+      }
+
+      #app-title {
+        margin-left: 4vw;
+        color: #fff;
+        font-size: 4vh;
+      }
+
     </style>
-    <div id="head-container">
+    <div id="head-container-msg">
       <div id="back-button">
         <svg id="back-button-img" viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg"><g stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10H1M1 10l8-8M1 10l8 8"/></g></svg>    
       </div>
-      <div class="profile-picture">
-        <img class="profile-picture-img" src="https://i.mycdn.me/i?r=AyH4iRPQ2q0otWIFepML2LxRDAJuMgySAFi_9sZpdku8tQ">
+      <div id="profile-picture">
+        <img id="profile-picture-img" src="https://i.mycdn.me/i?r=AyH4iRPQ2q0otWIFepML2LxRDAJuMgySAFi_9sZpdku8tQ">
       </div>
-      <div class="active">
-        <div class="name">Nancy Sinatra</div>
-        <div class="last-active">была в сети час назад</div>
+      <div id="active">
+        <div id="name">Nancy Sinatra</div>
+        <div id="last-active">была в сети час назад</div>
       </div>
       <div id="left-buttons">
         <div id="search-button">
@@ -112,7 +149,19 @@ template.innerHTML = `
         </div>
       </div>
     </div>
+
+    <div id="head-container-menu">
+      <div id='side-menu-button'>
+        <svg id='side-menu-button-img' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>    
+      </div>
+      <div id='app-title'>
+        Messenger
+      </div>
+    </div>
+    
+      
 `;
+//           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill='none' d="M0 0h24v24H0z"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
 
 
 class PageHeader extends HTMLElement {
@@ -120,6 +169,18 @@ class PageHeader extends HTMLElement {
     super();
     this.shadowRoot = this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.$headContainer = this.shadowRoot.getElementById('head-container-msg');
+    this.$headContainerNew = this.shadowRoot.getElementById('head-container-menu');
+    this.$backButton = this.shadowRoot.getElementById('back-button');
+    this.$mainContainer = document.getElementById('main-container');
+
+    this.$backButton.addEventListener('click', this.onClick.bind(this));
+  }
+
+  onClick() {
+    this.$headContainer.style.display = 'none';
+    this.$headContainerNew.style.display = 'flex';
+    this.$mainContainer.changeDisplay();
   }
 }
 

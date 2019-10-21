@@ -1,3 +1,6 @@
+import { getCurrentTime, updateAppState, updateMessageStorage } from './Functions';
+
+
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
@@ -25,12 +28,6 @@ const splitter = 'R2P6kf';
 const storageKey = 'chatLog';
 
 
-function getCurrentTime() {
-  const time = new Date();
-  return time.getTime();
-}
-
-
 function addToLocalStorage(message) {
   let stringArray = localStorage.getItem(storageKey);
   const time = message.absoluteTime;
@@ -48,12 +45,12 @@ function addToLocalStorage(message) {
 class MessageForm extends HTMLElement {
   constructor() {
     super();
-    this.shadowRoot = this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.$form = this.shadowRoot.querySelector('form');
     this.$input = this.shadowRoot.querySelector('form-input');
-    this.$messageContainer = document.getElementById('message-container');
-
+    this.$mainContainer = document.getElementById('main-container');
+    this.$messageContainer = this.$mainContainer.shadowRoot.getElementById('message-container');
     this.$form.addEventListener('submit', this.onSubmit.bind(this));
     this.$form.addEventListener('keypress', this.onKeyPress.bind(this));
   }
@@ -64,6 +61,9 @@ class MessageForm extends HTMLElement {
     const msgText = this.$input.value.trim();
 
     if (msgText !== '') {
+      // const newMessage = this.$messageContainer.addMessage(msgText, getCurrentTime());
+      // updateAppState(this.$mainContainer.$appState, newMessage);
+      // updateMessageStorage(this.$mainContainer.$appState);
       addToLocalStorage(this.$messageContainer.addMessage(msgText, getCurrentTime()));
     }
 

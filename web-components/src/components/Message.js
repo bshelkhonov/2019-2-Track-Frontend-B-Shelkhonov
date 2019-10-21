@@ -3,36 +3,35 @@ template.innerHTML = `
   <style>
   .message-box {
     background-color: #f3e5f5;
-    margin: auto 1vw 0.5vh 20vw;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    max-width: 70vw;
+    margin-top: 1vh;
+    margin-right: 1vw;
   }
   
   .message-text {
+    max-width: 60vw;
     font-size: 3vh;
     text-align: left;
     line-height: 1.5;
-    word-wrap: break-word;
+    word-wrap: break-all;
   }
-
   .message-status {
     display: flex;
     justify-content: flex-end;
     right: 1px;
   }
-
   .time-stamp {
     font-size: 1.5vh;
     text-align: right;
     margin-right: 1vw;
   }
-
   .read-status {
     height: 1.5vh;
     width: 1.5vh;
     fill: #8e24aa;
   }
-
   </style>
   <div class='message-box'>
     <div class='message-text'></div>
@@ -43,7 +42,6 @@ template.innerHTML = `
       </div>
     </div>
   </div>
-
 `;
 
 class Message extends HTMLElement {

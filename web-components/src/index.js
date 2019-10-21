@@ -4,3 +4,6 @@ import './components/MessageForm';
 import './components/Message';
 import './components/MessageContainer';
 import './components/PageHeader';
+import './components/MainContainer';
+import './components/DialogsContainer';
+import './components/Dialog';
