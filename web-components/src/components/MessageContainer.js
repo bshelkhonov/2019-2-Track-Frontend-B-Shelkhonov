@@ -17,11 +17,6 @@ template.innerHTML = `
   </div>
 `;
 
-const separator = 'Nm9qii';
-const splitter = 'R2P6kf';
-const storageKey = 'chatLog';
-
-
 function getStringTime(absoluteTime) {
   const time = new Date(absoluteTime);
   return `${time.getHours()}:${time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()}`;
@@ -37,27 +32,21 @@ class MessageContainer extends HTMLElement {
     this.$mainContainer = document.getElementById('main-container');
   }
 
-  connectedCallback() {
-   /* try {
-      this.$mainContainer.$appState.messages = JSON.parse(localStorage.getItem(messagesStorageKey));
-      this.$mainContainer.$appState.messages.forEach((item) => {
-        console.log(item);
-        this.addMessage(item.value, item.time);
+  loadMessages() {
+    try {
+      this.$mainContainer.appState.messages = JSON.parse(localStorage.getItem(messagesStorageKey));
+      if (this.$mainContainer.appState.messages == null) {
+        this.$mainContainer.appState.messages = [];
+      }
+      this.$mainContainer.appState.messages.forEach((item) => {
+        if ('value' in item && 'time' in item) {
+          this.addMessage(item.value, item.time);
+        }
       });
-    } catch(err) {
-      console.log('localstorage error!');
-    }*/
-    const stringArray = localStorage.getItem(storageKey);
-    if (stringArray === null) {
-      return;
+    } catch (err) {
+      this.$mainContainer.appState.messages = [];
     }
-
-    stringArray.split(splitter).forEach((element) => {
-      const msg = element.split(separator);
-      this.addMessage(msg[1], parseInt(msg[0], 10));
-    });
   }
-
 
   addMessage(msgText, absoluteTime) {
     const newMessage = document.createElement('message-element');

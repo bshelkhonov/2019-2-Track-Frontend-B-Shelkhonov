@@ -1,4 +1,4 @@
-import { getCurrentTime, updateAppState, updateMessageStorage } from './Functions';
+import getCurrentTime from './Functions';
 
 
 const template = document.createElement('template');
@@ -23,25 +23,6 @@ template.innerHTML = `
 `;
 
 
-const separator = 'Nm9qii';
-const splitter = 'R2P6kf';
-const storageKey = 'chatLog';
-
-
-function addToLocalStorage(message) {
-  let stringArray = localStorage.getItem(storageKey);
-  const time = message.absoluteTime;
-  const msgText = message.value;
-
-  if (stringArray === null) {
-    localStorage.setItem(storageKey, `${time}${separator}${msgText}`);
-  } else {
-    stringArray += `${splitter}${time}${separator}${msgText}`;
-    localStorage.setItem(storageKey, stringArray);
-  }
-}
-
-
 class MessageForm extends HTMLElement {
   constructor() {
     super();
@@ -61,10 +42,9 @@ class MessageForm extends HTMLElement {
     const msgText = this.$input.value.trim();
 
     if (msgText !== '') {
-      // const newMessage = this.$messageContainer.addMessage(msgText, getCurrentTime());
-      // updateAppState(this.$mainContainer.$appState, newMessage);
-      // updateMessageStorage(this.$mainContainer.$appState);
-      addToLocalStorage(this.$messageContainer.addMessage(msgText, getCurrentTime()));
+      const newMessage = this.$messageContainer.addMessage(msgText, getCurrentTime());
+      this.$mainContainer.updateAppState(newMessage);
+      this.$mainContainer.updateMessageStorage();
     }
 
     this.$input.reset();
