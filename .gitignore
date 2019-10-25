@@ -145,3 +145,11 @@ flow-typed/
 docs/_book/
 jest_*/
 .jscpd/
+
+
+package-lock.json
+package_was.json
+web-components/node_modules
+web-components/build
+web-components/package-lock.json
+web-components/src/images
